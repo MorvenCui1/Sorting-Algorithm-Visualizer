@@ -1,0 +1,106 @@
+.App {
+  text-align: center; /* align text */
+}
+
+.headerOne h1 {
+  font-size: 1.75rem; /* font size */
+  color: black; /* text colour */
+  margin: 0; /* remove default margin */
+  margin-top: 10px; /* pixels from top */
+  margin-bottom: 3px; /* pixels from bottom */
+}
+
+.headerTwo h1 {
+  font-size: 1.75rem; /* font size */
+  color: black; /* text colour */
+  margin: 0; /* remove default margin */
+  margin-top: 8px; /* pixels from top */
+  margin-bottom: 3px; /* pixels from bottom */
+}
+
+.button-container-wrapper {
+  display: grid; /* turns wrapper of button container into a two-dimensional grid layout */
+  place-items: center; /* aligns and justifies items */
+  height: 7vh; /* height of wrapper in relation to viewport */
+}
+
+.button-container-one {
+  display: flex; /* turns the buttoon container into a one-dimensional grid layout */
+  gap: 10px; /* gap between buttons */
+  place-items: center; /* aligns and justifies items */
+}
+
+.button-container-two {
+  display: flex; /* turns the button container into a one-dimensional grid layout */
+  gap: 10px; /* gap between buttons */
+  max-width: 1250px; /* width of container */
+  margin: 0 auto; /* centers container horizontally */
+  box-sizing: border-box; /* includes padding and border in width and height */
+}
+
+.custom-button-one {
+  font-size: 20px; /* font size */
+  color: black; /* text colour */
+  background-color: lightblue; /* background colour */
+  border: black; /* remove default border */
+  border-radius: 8px; /* rounded corners */
+  padding: 10px 20px; /* padding inside the button */
+  cursor: pointer; /* change cursor to pointer on hover */
+  font-family: Arial, sans-serif; /* font family */
+  transition: background-color 0.3s; /* smooth transition for background colour */
+  width: 250px; /* button width */
+  height: 40px; /* button height */
+  text-align: center; /* centers text horizontally */
+  align-items: center; /* centers text vertically */
+}
+
+.custom-button-two {
+  font-size: 19.5px; /* font size */
+  color: black; /* text colour */
+  background-color: lightgreen; /* background colour */
+  border: black; /* remove default border */
+  border-radius: 8px; /* rounded corners */
+  padding: 10px 20px; /* padding inside the button */
+  cursor: pointer; /* change cursor to pointer on hover */
+  font-family: Arial, sans-serif; /* font family */
+  transition: background-color 0.3s; /* smooth transition for background colour */
+  width: 300px; /* button width */
+  height: 40px; /* button height */
+  text-align: center; /* centers text horizontally */
+  align-items: center; /* centers text vertically */
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
