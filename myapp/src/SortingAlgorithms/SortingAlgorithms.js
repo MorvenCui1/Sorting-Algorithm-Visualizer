@@ -9,7 +9,11 @@ export function getBubbleSortAnimations(array) {
             // check if swap is needed
             if (array[j] > array[j + 1]) {
                 // push animations
+                animations.push([j, j + 1]);
+                animations.push([j, j + 1]);
                 animations.push([j, array[j + 1]]);
+                animations.push([j + 1, j]);
+                animations.push([j + 1, j]);
                 animations.push([j + 1, array[j]]);
                 // swap values
                 var temp = array[j];
@@ -18,7 +22,11 @@ export function getBubbleSortAnimations(array) {
             }
             else {
                 // push animations
+                animations.push([j, j]);
+                animations.push([j, j]);
                 animations.push([j, array[j]]);
+                animations.push([j + 1, j + 1]);
+                animations.push([j + 1, j + 1]);
                 animations.push([j + 1, array[j + 1]]);
             }
         }
@@ -37,7 +45,11 @@ export function getInsertionSortAnimations(array) {
         let j = i;
         while (j > 0 && array[j - 1] > array[j]) {
             // push animations
+            animations.push([j, j - 1]);
+            animations.push([j, j - 1]);
             animations.push([j, array[j - 1]]);
+            animations.push([j - 1, j]);
+            animations.push([j - 1, j]);
             animations.push([j - 1, array[j]]);
 
             // swap element and decrement pointer
@@ -61,15 +73,25 @@ export function getSelectionSortAnimations(array) {
 
         // search through remaining section of unsorted array
         for (let j = i + 1; j < array.length; j++) {
+            // push animations
+            animations.push([j, j]);
+            animations.push([j, j]);
+            animations.push([j, array[j]]);
+
             // check if there is new minimum value
             if (array[j] < array[minimumValueIndex]) {
                 minimumValueIndex = j;
             }
         }
+        // push animations
+        animations.push([i, minimumValueIndex]);
+        animations.push([i, minimumValueIndex]);
+        animations.push([i, array[minimumValueIndex]]);
+        animations.push([minimumValueIndex, i]);
+        animations.push([minimumValueIndex, i]);
+        animations.push([minimumValueIndex, array[i]]);
 
         // swap starting element and minimum index values
-        animations.push([i, array[minimumValueIndex]]);
-        animations.push([minimumValueIndex, array[i]]);
         let temp = array[i];
         array[i] = array[minimumValueIndex];
         array[minimumValueIndex] = temp;
@@ -90,7 +112,11 @@ export function getHeapSortAnimations(array) {
     // sort the array
     for (var i = array.length - 1; i > 0; i--) {
         // push animations
+        animations.push([0, i]);
+        animations.push([0, i]);
         animations.push([0, array[i]]);
+        animations.push([0, i]);
+        animations.push([0, i]);
         animations.push([i, array[0]]);
 
         // put largest element of array at the back
@@ -125,7 +151,11 @@ function heapify(array, arraySize, i,  animations) {
     // check if swap is needed
     if (largest != i) {
         // push animations
+        animations.push([i, largest]);
+        animations.push([i, largest]);
         animations.push([i, array[largest]]);
+        animations.push([i, largest]);
+        animations.push([i, largest]);
         animations.push([largest, array[i]]);
 
         // put largest element at first element of array portion
@@ -173,14 +203,26 @@ function partition(array, low, high, animations) {
         // check if swap is needed
         if (array[j] < pivot) {
             i++;
+
+            // push animations
+            animations.push([i, j]);
+            animations.push([i, j]);
             animations.push([i, array[j]]);
+            animations.push([i, j]);
+            animations.push([i, j]);
             animations.push([j, array[i]]);
+            
+            // swap array elements
             [array[i], array[j]] = [array[j], array[i]];
         }
     }
 
     // push the animations
+    animations.push([i + 1, high]);
+    animations.push([i + 1, high]);
     animations.push([i + 1, array[high]]);
+    animations.push([i + 1, high]);
+    animations.push([i + 1, high]);
     animations.push([high, array[i + 1]]);
     
     // swap the pivot to the correct position
@@ -228,6 +270,10 @@ function doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animati
 
     // sort the two halves of the array and push the animation information
     while (i <= middleIdx && j <= endIdx) {        
+        // push colour change
+        animations.push([i, j]);
+        animations.push([i, j]);
+
         // check which element to swap
         if (auxiliaryArray[i] <= auxiliaryArray[j]){
             animations.push([k, auxiliaryArray[i]]);
@@ -241,11 +287,19 @@ function doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animati
 
     // clean up and push the remaining sections of the array
     while (i <= middleIdx) {
+        // push colour change
+        animations.push([i, i]);
+        animations.push([i, i]);
+
         // push swap element
         animations.push([k, auxiliaryArray[i]]);
         mainArray[k++] = auxiliaryArray[i++];
     }
     while (j <= endIdx) {
+        // push colour change
+        animations.push([j, j]);
+        animations.push([j, j]);
+
         // push swap element
         animations.push([k, auxiliaryArray[j]]);
         mainArray[k++] = auxiliaryArray[j++];
@@ -269,6 +323,8 @@ export function getShellSortAnimations(array) {
             let j;
             for (j = i; j >= gap && array[j - gap] > temp; j -= gap) {
                 // push animations
+                animations.push([j, j - gap]);
+                animations.push([j, j - gap]);
                 animations.push([j, array[j - gap]]);
 
                 // swap elements
@@ -276,6 +332,8 @@ export function getShellSortAnimations(array) {
             }
 
             // push animations and insert element
+            animations.push([j, j]);
+            animations.push([j, j]);
             animations.push([j, temp]);
             array[j] = temp;
         }
