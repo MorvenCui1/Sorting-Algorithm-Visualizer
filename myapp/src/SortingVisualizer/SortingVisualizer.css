@@ -4,7 +4,7 @@
     top: 40%; /* moves top edge from top of screen */
     left: 50%; /* moves left edge from left of screen */
     transform: translate(-50%, -40%); /* centers around center of container instead of top left corner */
-    max-width: 1205px; /* maximum width of container */
+    max-width: 1400px; /* maximum width of container */
     box-sizing: border-box; /* includes padding and border within specified positions */
 }
 

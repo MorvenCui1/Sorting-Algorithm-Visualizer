@@ -306,6 +306,66 @@ function doMerge(mainArray, startIdx, middleIdx, endIdx, auxiliaryArray, animati
     }
 }
 
+// radix sort
+export function getRadixSortAnimations(array) {
+    const animations = [];
+
+    // find max element of array
+    let maxElement = array[0];
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] > maxElement) {
+            maxElement = array[i];
+        }
+    }
+
+    // create deep copy of array to return as sorted array
+    let sortedArray = [...array];
+
+    // sort the shallow copy of array through each digit up to the amount of digits in the maximum number
+    for (let exponent = 1; Math.floor(maxElement / exponent) > 0; exponent *= 10) {
+        const sortedIteration = countSort(sortedArray, exponent, animations);
+        sortedArray = sortedIteration;
+    }
+
+    return animations;
+}
+
+// sort array by current digit
+function countSort(array, exponent, animations) {
+    // initialize output sorted array
+    let output = Array(array.length);
+    // initialize array to track the number of positions all elements up until a digit value occupy
+    let count = Array(10).fill(0);
+
+    // count amount of each digit value
+    for (let i = 0; i < array.length; i++) {
+        const digit = Math.floor(array[i] / exponent) % 10;
+        count[digit]++;
+    }
+
+    // update each index to track ending occupying index
+    for (let i = 1; i < 10; i++) {
+        count[i] += count[i - 1];
+    }
+
+    // set each index in the output array to corresponding last occupying spot of current digit
+    for (let i = array.length - 1; i >= 0; i--) {
+        const digit = Math.floor(array[i] / exponent) % 10;
+
+        // push animations
+        animations.push([i, count[digit] - 1]);
+        animations.push([i, count[digit] - 1]);
+        animations.push([count[digit] - 1, array[i]]);
+
+        // put element in correct place according to its digit sorting
+        output[count[digit] - 1] = array[i];
+        // decrease last occupying spot of digit
+        count[digit]--;
+    }
+
+    return output;
+}
+
 // shell sort
 export function getShellSortAnimations(array) {
     const animations = [];

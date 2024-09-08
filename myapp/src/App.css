@@ -68,7 +68,7 @@
 .button-container-two {
   display: flex; /* turns the button container into a one-dimensional grid layout */
   gap: 10px; /* gap between buttons */
-  max-width: 1250px; /* width of container */
+  max-width: 1400px; /* width of container */
   margin: 0 auto; /* centers container horizontally */
   box-sizing: border-box; /* includes padding and border in width and height */
 }
